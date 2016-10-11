@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>d3 circle legend</title>
+  <style type="text/css">
+
+  /*.legendTitle {
+    font: 10px sans-serif;
+    text-anchor: end !important;
+  }*/
+
+
+  </style>
+</head>
+<body>
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script src="circleLegend.js"></script>
+  <script type="text/javascript">
+
+    var margin = {top: 20, right: 100, bottom: 20, left: 100};
+
+    var width = 940 - margin.left - margin.right,
+      height = 600 - margin.top - margin.bottom;
+
+    var svg = d3.select('body').append('svg')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+
+    svg = svg.append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    var scale = d3.scale.sqrt()
+            .domain([0, 10000])
+            .range([0, 50])
+
+    // 1
+    var circleKey = circleLegend()
+        .rScale(scale)
+        // Return falsey value from tickFormat to remove it
+        .tickValues([100, 1000, 5000, 10000])
+        .titleName("Billed Rate ($/h)")
+        .orient("right")
+        .textPadding(10)
+
+    a = svg.append('g')
+      .attr('transform', 'translate(300, 200)')
+      a.call(circleKey)
+
+  </script>
+</body>
+</html>
