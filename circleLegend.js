@@ -78,31 +78,31 @@ var circleLegend = function() {
 
   // APIs
   _circleLegend.rScale = function(_) {
-    if (!arguments.length) { return rScale; }
+    if (!arguments.length) { return _r_scale; }
     _r_scale = _;
     return _circleLegend;
   };
 
   _circleLegend.tickValues = function(_) {
-    if (!arguments.length) { return tickValues; }
+    if (!arguments.length) { return _tick_value_list; }
     _tick_value_list = _;
     return _circleLegend;
   };
 
   _circleLegend.titleName = function(_) {
-    if (!arguments.length) { return titleName; }
+    if (!arguments.length) { return _title_name; }
     _title_name = _;
     return _circleLegend;
   };
 
   _circleLegend.textPadding = function(_) {
-    if (!arguments.length) { return textPadding; }
+    if (!arguments.length) { return _text_padding; }
     _text_padding = _;
     return _circleLegend;
   };
 
   _circleLegend.orient = function(_) {
-    if (!arguments.length) { return orient; }
+    if (!arguments.length) { return _orient; }
     _orient = _;
     return _circleLegend;
   };
