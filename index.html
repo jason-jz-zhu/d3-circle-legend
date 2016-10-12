@@ -5,7 +5,7 @@
   <style type="text/css">
 
   /*use !important to reset css*/
-  /*.legendTitle {
+  /*.legend_title {
     font: 10px sans-serif;
     text-anchor: end !important;
   }*/
@@ -14,8 +14,8 @@
 </head>
 <body>
   <script src="//d3js.org/d3.v3.min.js"></script>
-  <!-- <script src="circleLegend.js"></script> -->
-  <script src="https://rawgit.com/jason-jz-zhu/d3-circle-legend/master/circleLegend.js"></script>
+  <script src="circleLegend.js"></script>
+  <!-- <script src="https://rawgit.com/jason-jz-zhu/d3-circle-legend/master/circleLegend.js"></script> -->
   <script type="text/javascript">
 
     var margin = {top: 20, right: 100, bottom: 20, left: 100};
@@ -44,8 +44,8 @@
         .textPadding(10)
 
     a = svg.append('g')
-      .attr('transform', 'translate(300, 200)')
-      a.call(circleKey)
+      .attr('transform', 'translate(300, 500)');
+    a.call(circleKey)
 
   </script>
 </body>

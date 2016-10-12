@@ -2,28 +2,28 @@ var circleLegend = function() {
   "use strict";
 
   // Internals
-  var rScale,
-      orient = "right",
-      tickValues = null,
-      textPadding = 5,
-      titleName = "";
+  var _r_scale,  // must
+      _orient = "right",
+      _tick_value_list = null,
+      _text_padding = 5,
+      _title_name = "";
 
   function _circleLegend() {
-    var legendLineLength = rScale(d3.max(tickValues)) * 4/3,
-        sign = orient == "left" ? -1 : 1;
+    var legend_line_length = _r_scale(d3.max(_tick_value_list)) * 4/3,
+        sign = _orient == "left" ? -1 : 1;
     ///////////////////////
     ///////// circle //////
     ///////////////////////
-    var circle = this.append("g").attr("class", "legendCircle")
+    var circle = this.append("g").attr("class", "legend_circle")
     // circle selection data join
     circle = circle.selectAll("circle")
-            .data(tickValues);
+            .data(_tick_value_list);
     // circle selection enter
     circle.enter()
             .append("circle")
-            .attr("r", function(d) { return rScale(d); })
+            .attr("r", function(d) { return _r_scale(d); })
             .attr("cx", 0)
-            .attr("cy", function(d) { return -rScale(d); })
+            .attr("cy", function(d) { return -_r_scale(d); })
             .style("stroke-width", 1)
             .style("stroke", "#999")
             .style("stroke-dasharray", "2 2")
@@ -33,15 +33,15 @@ var circleLegend = function() {
     ///////////////////////////
     var line = this.append("g")
             .selectAll("line")
-            .data(tickValues, String);
+            .data(_tick_value_list, String);
 
     line.enter()
             .append("line")
-            .attr("class", "legendLine")
+            .attr("class", "legend_line")
             .attr('x1', 0)
-            .attr("y1", function(d) { return -2*rScale(d); })
-            .attr('x2', sign*legendLineLength)
-            .attr("y2", function(d) { return -2*rScale(d); })
+            .attr("y1", function(d) { return -2*_r_scale(d); })
+            .attr('x2', sign*legend_line_length)
+            .attr("y2", function(d) { return -2*_r_scale(d); })
             .style("stroke-width", 1)
             .style("stroke", "#D1D1D1")
             .style("shape-rendering", "crispEdges");
@@ -51,13 +51,13 @@ var circleLegend = function() {
     ///////////////////////////
     var text = this.append("g")
             .selectAll("text")
-            .data(tickValues, String);
+            .data(_tick_value_list, String);
 
     text.enter()
             .append("text")
-            .attr("class", "legendText")
-            .attr("x", sign*(legendLineLength + textPadding))
-            .attr("y", function(d) { return -2*scale(d); })
+            .attr("class", "legend_text")
+            .attr("x", sign*(legend_line_length + _text_padding))
+            .attr("y", function(d) { return -2*_r_scale(d); })
             .attr("dy", "0.25em")
             .style("text-anchor", sign == -1 ? "end" : "start")
             .style("fill", "#949494")
@@ -67,11 +67,11 @@ var circleLegend = function() {
     ///////// legent title ////
     ///////////////////////////
     this.append("text")
-            .attr("class","legendTitle")
+            .attr("class","legend_title")
             .attr("x", 0)
-            .attr("y", -rScale(d3.max(tickValues))*2.8 )
+            .attr("y", -_r_scale(d3.max(_tick_value_list))*2.8 )
             .attr("dy", "1em")
-            .text(titleName)
+            .text(_title_name)
             .style("font", "10px sans-serif")
             .style("text-anchor", "start");
   };
@@ -79,31 +79,31 @@ var circleLegend = function() {
   // APIs
   _circleLegend.rScale = function(_) {
     if (!arguments.length) { return rScale; }
-    rScale = _;
+    _r_scale = _;
     return _circleLegend;
   };
 
   _circleLegend.tickValues = function(_) {
     if (!arguments.length) { return tickValues; }
-    tickValues = _;
+    _tick_value_list = _;
     return _circleLegend;
   };
 
   _circleLegend.titleName = function(_) {
     if (!arguments.length) { return titleName; }
-    titleName = _;
+    _title_name = _;
     return _circleLegend;
   };
 
   _circleLegend.textPadding = function(_) {
     if (!arguments.length) { return textPadding; }
-    textPadding = _;
+    _text_padding = _;
     return _circleLegend;
   };
 
   _circleLegend.orient = function(_) {
     if (!arguments.length) { return orient; }
-    orient = _;
+    _orient = _;
     return _circleLegend;
   };
 
